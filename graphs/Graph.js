@@ -1,56 +1,3 @@
-class BinaryTree {
-   constructor() {
-      this.size = 0;
-      this.root = null;
-   }
-
-   insert(val) {
-      let newNode = new Node(val);
-      if (!this.root) {
-         this.root = newNode;
-         this.size++;
-         return this;
-      }
-
-      let node = this.root;
-      while (node) {
-         if (val > node.val) {
-            if (!node.right) {
-               node.right = newNode;
-               break;
-            }
-            node = node.right;
-         } else {
-            if (!node.left) {
-               node.left = newNode;
-               break;
-            }
-            node = node.left;
-         }
-      }
-
-      this.size++;
-      return this;
-   }
-
-   contains(val) {
-      if (this.size === 0) return false;
-      let node = this.root;
-      while (node) {
-         if (node.val === val) return true;
-         if (val > node.val) {
-            node = node.right;
-            if (!node) return false;
-         } else {
-            node = node.left;
-            if (!node) return false;
-         }
-      }
-   }
-
-   remove(val) {}
-}
-
 //Undirected Graph with connections stored in an Adjacency List
 class Graph {
    constructor() {
@@ -74,21 +21,57 @@ class Graph {
       }
       delete this.adjacencyList[vertex];
    }
+
+   dftRecursive(start) {
+      //depth-first traversal using recursive function
+      const results = [];
+      const visited = {};
+      const adjacencyList = this.adjacencyList;
+      (function dft(vertex) {
+         if (!vertex) {
+            return null;
+         }
+         visited[vertex] = true;
+         results.push(vertex);
+         adjacencyList[vertex].forEach((neighbor) => {
+            if (!visited[neighbor]) return dft(neighbor);
+         });
+      })(start);
+      return visited;
+   }
+
+   dftIterave(start) {
+      //depth-first traversal using iterave method
+      let results = [];
+      let stack = [start];
+      let vertex = null;
+      while (stack.length > 0) {
+         vertex = stack.pop();
+         if (results.indexOf(vertex) < 0) {
+            results.push(vertex);
+            this.adjacencyList[vertex].forEach((vtx) => {
+               stack.push(vtx);
+            });
+         }
+      }
+      return results;
+   }
 }
 
-let airports = new Graph();
-airports.addVertex("Nanaimo");
-airports.addVertex("Vancouver");
-airports.addVertex("Victoria");
-airports.addVertex("Calgary");
-airports.addVertex("Tofino");
-airports.addEdge("Nanaimo", "Vancouver");
-airports.addEdge("Vancouver", "Calgary");
-airports.addEdge("Nanaimo", "Tofino");
-airports.addEdge("Victoria", "Vancouver");
-airports.addEdge("Nanaimo", "Calgary");
-airports.addEdge("Victoria", "Tofino");
-console.log(airports.adjacencyList);
+let g = new Graph();
+g.addVertex("A");
+g.addVertex("B");
+g.addVertex("C");
+g.addVertex("D");
+g.addVertex("E");
+g.addVertex("F");
 
-airports.removeVertex("Nanaimo");
-console.log(airports.adjacencyList);
+g.addEdge("A", "B");
+g.addEdge("A", "C");
+g.addEdge("B", "D");
+g.addEdge("C", "E");
+g.addEdge("D", "E");
+g.addEdge("D", "F");
+g.addEdge("E", "F");
+
+console.log(g.dftIterave("A"));
