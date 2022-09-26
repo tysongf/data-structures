@@ -46,7 +46,7 @@ class Graph {
       const stack = [start];
       const visited = {};
       let vertex = null;
-      while (stack.length > 0) {
+      while (stack.length) {
          vertex = stack.pop();
          if (results.indexOf(vertex) < 0) {
             results.push(vertex);
@@ -57,6 +57,26 @@ class Graph {
                }
             });
          }
+      }
+      return results;
+   }
+
+   bft(start) {
+      //breadth-first traversal using iterave method
+      const results = [];
+      const queue = [start];
+      const visited = {};
+      let vertex = null;
+      while (queue.length) {
+         vertex = queue.pop();
+         results.push(vertex);
+         visited[vertex] = true;
+         this.adjacencyList[vertex].forEach((vtx) => {
+            if (!visited[vtx]) {
+               visited[vtx] = true;
+               queue.unshift(vtx);
+            }
+         });
       }
       return results;
    }
@@ -78,4 +98,4 @@ g.addEdge("D", "E");
 g.addEdge("D", "F");
 g.addEdge("E", "F");
 
-console.log(g.dftIterave("A"));
+console.log(g.bft("A"));
