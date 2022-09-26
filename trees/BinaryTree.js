@@ -56,7 +56,7 @@ class BinaryTree {
       }
    }
 
-   breadthFirstSearch() {
+   breadthFirstTraversal() {
       var node = this.root;
       var data = [];
       var queue = [];
@@ -70,6 +70,39 @@ class BinaryTree {
       }
       return data;
    }
+
+   DFSPreOrder() {
+      var data = [];
+      function traverse(node) {
+         data.push(node.val);
+         if (node.left) traverse(node.left);
+         if (node.right) traverse(node.right);
+      }
+      traverse(this.root);
+      return data;
+   }
+
+   DFSPostOrder() {
+      var data = [];
+      function traverse(node) {
+         if (node.left) traverse(node.left);
+         if (node.right) traverse(node.right);
+         data.push(node.val);
+      }
+      traverse(this.root);
+      return data;
+   }
+
+   DFSInOrder() {
+      var data = [];
+      function traverse(node) {
+         if (node.left) traverse(node.left);
+         data.push(node.val);
+         if (node.right) traverse(node.right);
+      }
+      traverse(this.root);
+      return data;
+   }
 }
 
 let bst = new BinaryTree();
@@ -81,4 +114,7 @@ bst.insert(20);
 bst.insert(10);
 
 console.log(bst);
-console.log(bst.breadthFirstSearch());
+console.log(bst.breadthFirstTraversal());
+console.log(bst.DFSInOrder());
+console.log(bst.DFSPostOrder());
+console.log(bst.DFSPreOrder());
