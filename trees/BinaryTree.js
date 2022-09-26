@@ -41,17 +41,17 @@ class BinaryTree {
       return this;
    }
 
-   find(val) {
-      if (this.size === 0) return undefined;
+   contains(val) {
+      if (this.size === 0) return false;
       let node = this.root;
       while (node) {
-         if (node.val === val) return node.val;
+         if (node.val === val) return true;
          if (val > node.val) {
             node = node.right;
-            if (!node) return undefined;
+            if (!node) return false;
          } else {
             node = node.left;
-            if (!node) return undefined;
+            if (!node) return false;
          }
       }
    }
@@ -66,4 +66,4 @@ while (numItems) {
 }
 
 console.log(bst);
-console.log(bst.find(7));
+console.log(bst.contains(7));
