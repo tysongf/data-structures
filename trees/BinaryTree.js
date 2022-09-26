@@ -55,15 +55,30 @@ class BinaryTree {
          }
       }
    }
+
+   breadthFirstSearch() {
+      var node = this.root;
+      var data = [];
+      var queue = [];
+      queue.push(this.root);
+
+      while (queue.length) {
+         node = queue.shift();
+         data.push(node.val);
+         if (node.left) queue.push(node.left);
+         if (node.right) queue.push(node.right);
+      }
+      return data;
+   }
 }
 
 let bst = new BinaryTree();
 
-let numItems = 20;
-while (numItems) {
-   bst.insert(Math.floor(Math.random() * 40));
-   numItems--;
-}
+bst.insert(25);
+bst.insert(15);
+bst.insert(35);
+bst.insert(20);
+bst.insert(10);
 
 console.log(bst);
-console.log(bst.contains(7));
+console.log(bst.breadthFirstSearch());
