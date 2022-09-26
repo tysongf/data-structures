@@ -42,15 +42,19 @@ class Graph {
 
    dftIterave(start) {
       //depth-first traversal using iterave method
-      let results = [];
-      let stack = [start];
+      const results = [];
+      const stack = [start];
+      const visited = {};
       let vertex = null;
       while (stack.length > 0) {
          vertex = stack.pop();
          if (results.indexOf(vertex) < 0) {
             results.push(vertex);
             this.adjacencyList[vertex].forEach((vtx) => {
-               stack.push(vtx);
+               if (!visited[vtx]) {
+                  visited[vtx] = true;
+                  stack.push(vtx);
+               }
             });
          }
       }
