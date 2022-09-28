@@ -1,6 +1,6 @@
 class MaxBinaryHeap {
    constructor() {
-      this.values = [41, 39, 33, 18, 27, 12];
+      this.values = [];
    }
 
    insert(value) {
@@ -25,11 +25,14 @@ class MaxBinaryHeap {
    }
 
    extractMax() {
-      //edge case - - -
       const max = this.values[0];
       const end = this.values.pop();
-      this.values[0] = end;
-      this.sinkDown();
+
+      if (this.values.length > 0) {
+         this.values[0] = end;
+         this.sinkDown();
+      }
+
       return max;
    }
 
@@ -74,7 +77,15 @@ class MaxBinaryHeap {
 
 let heap = new MaxBinaryHeap();
 
-heap.insert(34);
-heap.extractMax();
-heap.extractMax();
+const initSize = 20;
+
+for (let i = 0; i < initSize; i++) {
+   heap.insert(Math.floor(Math.random() * initSize));
+}
+
+console.log(heap.values);
+
+for (let i = 0; i < Math.floor(initSize / 4); i++) {
+   console.log(`Removing ${heap.extractMax()}`);
+}
 console.log(heap.values);
