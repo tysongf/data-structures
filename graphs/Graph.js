@@ -41,7 +41,7 @@ class Graph {
    }
 
    dftIterave(start) {
-      //depth-first traversal using iterave method
+      //depth-first traversal using iterative method
       const results = [];
       const stack = [start];
       const visited = {};
@@ -62,7 +62,7 @@ class Graph {
    }
 
    bft(start) {
-      //breadth-first traversal using iterave method
+      //breadth-first traversal using iterative method
       const results = [];
       const queue = [start];
       const visited = {};
