@@ -104,3 +104,8 @@ console.log(heap);
 heap.dequeue();
 
 console.log(heap);
+
+exports.module = {
+   Node,
+   PriorityQueue,
+};

@@ -54,3 +54,5 @@ console.log(queue.remove());
 console.log(queue.remove());
 console.log(queue.remove());
 console.log(queue.remove());
+
+module.exports = { Queue, Node };
