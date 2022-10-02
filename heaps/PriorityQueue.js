@@ -84,28 +84,4 @@ class PriorityQueue {
 
 let heap = new PriorityQueue();
 
-heap.enqueue("fever", 3);
-heap.enqueue("gunshot wound", 1);
-heap.enqueue("drunk", 5);
-heap.enqueue("broken leg", 3);
-heap.enqueue("headache", 4);
-heap.enqueue("glass in foot", 2);
-heap.enqueue("heart attack", 1);
-
-console.log(heap);
-
-heap.dequeue();
-
-console.log(heap);
-
-heap.dequeue();
-
-console.log(heap);
-heap.dequeue();
-
-console.log(heap);
-
-exports.module = {
-   Node,
-   PriorityQueue,
-};
+module.exports = PriorityQueue;
