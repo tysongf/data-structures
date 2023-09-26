@@ -1,4 +1,4 @@
-const PriorityQueue = require("../heaps/PriorityQueue.js");
+const PriorityQueue = require("./BasicPriorityQueue.js");
 
 class WeightedGraph {
    constructor() {
